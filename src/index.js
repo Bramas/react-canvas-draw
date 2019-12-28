@@ -340,11 +340,11 @@ export default class extends PureComponent {
   handlePointerMove = (x, y) => {
     if (this.props.disabled) return;
 
-    const hasChanged = this.lazy.update({ x, y });
+    this.lazy.update({ x, y });
     const isDisabled = !this.lazy.isEnabled();
 
     if (
-      (this.isPressing && hasChanged && !this.isDrawing) ||
+      (this.isPressing && !this.isDrawing) ||
       (isDisabled && this.isPressing)
     ) {
       // Start drawing and add point
