@@ -278,6 +278,8 @@ export default class extends PureComponent {
   handleMouseDown = e => {
     e.preventDefault();
     this.isPressing = true;
+    const { x, y } = this.getPointerPos(e);
+    this.handlePointerMove(x, y);
   };
 
   handleMouseMove = e => {
