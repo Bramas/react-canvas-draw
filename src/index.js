@@ -372,8 +372,24 @@ export default class extends PureComponent {
 
     this.mouseHasMoved = true;
   };
+  drawPoint = ({ point, brushColor, brushRadius }) => {
+    this.ctx.temp.strokeStyle = brushColor;
 
+    this.ctx.temp.clearRect(
+      0,
+      0,
+      this.ctx.temp.canvas.width,
+      this.ctx.temp.canvas.height
+    );  
+    this.ctx.temp.beginPath();
+    this.ctx.temp.arc(point.x, point.y, brushRadius, 0, 2 * Math.PI, false);
+    this.ctx.temp.stroke(); 
+  };
   drawPoints = ({ points, brushColor, brushRadius }) => {
+    if(points.length == 1)
+    {
+      return drawPoint({point: points[0], brushColor, brushRadius});
+    }
     this.ctx.temp.lineJoin = "round";
     this.ctx.temp.lineCap = "round";
     this.ctx.temp.strokeStyle = brushColor;
