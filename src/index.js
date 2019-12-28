@@ -424,8 +424,7 @@ export default class extends PureComponent {
   };
 
   saveLine = ({ brushColor, brushRadius } = {}) => {
-    if (this.points.length < 2) return;
-
+    
     // Save as new line
     this.lines.push({
       points: [...this.points],
