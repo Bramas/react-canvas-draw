@@ -388,7 +388,7 @@ export default class extends PureComponent {
   drawPoints = ({ points, brushColor, brushRadius }) => {
     if(points.length == 1)
     {
-      return drawPoint({point: points[0], brushColor, brushRadius});
+      return this.drawPoint({point: points[0], brushColor, brushRadius});
     }
     this.ctx.temp.lineJoin = "round";
     this.ctx.temp.lineCap = "round";
