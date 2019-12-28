@@ -373,7 +373,7 @@ export default class extends PureComponent {
     this.mouseHasMoved = true;
   };
   drawPoint = ({ point, brushColor, brushRadius }) => {
-    this.ctx.temp.strokeStyle = brushColor;
+    this.ctx.temp.fillStyle = brushColor;
 
     this.ctx.temp.clearRect(
       0,
@@ -383,7 +383,7 @@ export default class extends PureComponent {
     );  
     this.ctx.temp.beginPath();
     this.ctx.temp.arc(point.x, point.y, brushRadius, 0, 2 * Math.PI, false);
-    this.ctx.temp.stroke(); 
+    this.ctx.temp.fill(); 
   };
   drawPoints = ({ points, brushColor, brushRadius }) => {
     if(points.length == 1)
