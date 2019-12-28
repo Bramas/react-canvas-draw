@@ -350,6 +350,12 @@ export default class extends PureComponent {
       // Start drawing and add point
       this.isDrawing = true;
       this.points.push(this.lazy.brush.toObject());
+      // Draw current points
+      this.drawPoints({
+        points: this.points,
+        brushColor: this.props.brushColor,
+        brushRadius: this.props.brushRadius
+      });
     }
 
     if (this.isDrawing && (this.lazy.brushHasMoved() || isDisabled)) {
