@@ -134,9 +134,12 @@ export default class extends PureComponent {
         this.loadSaveData(this.props.saveData);
       }
     }, 100);
+    this.canvas.interface.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive:false });
   }
 
   componentDidUpdate(prevProps) {
+    
+    
     if (prevProps.lazyRadius !== this.props.lazyRadius) {
       // Set new lazyRadius values
       this.chainLength = this.props.lazyRadius * window.devicePixelRatio;
@@ -154,6 +157,7 @@ export default class extends PureComponent {
   }
 
   componentWillUnmount = () => {
+    this.canvas.interface.removeEventListener('touchmove', this.handleTouchMove.bind(this), { passive:false });
     this.canvasObserver.unobserve(this.canvasContainer);
   };
 
@@ -576,13 +580,12 @@ export default class extends PureComponent {
                   this.ctx[name] = canvas.getContext("2d");
                 }
               }}
-              style={{ ...canvasStyle, zIndex }}
+              style={{ ...canvasStyle, zIndex, display:(isInterface && this.props.disabled ? 'none' : 'block') }}
               onMouseDown={isInterface ? this.handleMouseDown : undefined}
               onMouseMove={isInterface ? this.handleMouseMove : undefined}
               onMouseUp={isInterface ? this.handleMouseUp : undefined}
               onMouseOut={isInterface ? this.handleMouseUp : undefined}
               onTouchStart={isInterface ? this.handleTouchStart : undefined}
-              onTouchMove={isInterface ? this.handleTouchMove : undefined}
               onTouchEnd={isInterface ? this.handleTouchEnd : undefined}
               onTouchCancel={isInterface ? this.handleTouchEnd : undefined}
             />
